@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: karina-anonymous-messages
+    runtime: python
+    plan: free
+    region: frankfurt
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    healthCheckPath: /health
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: KARINA_CHAT_ID
+        sync: false
+      - key: WEBHOOK_SECRET
+        generateValue: true
+      - key: LOG_LEVEL
+        value: INFO
